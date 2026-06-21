@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Eagle | Kids Cycles & Walkers</title>
+    <style>
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #050b14;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes logoFloat {
+            0% { transform: translateY(0px) rotate(0deg); filter: drop-shadow(0 10px 20px rgba(225, 36, 36, 0.3)); }
+            50% { transform: translateY(-12px) rotate(1deg); filter: drop-shadow(0 20px 35px rgba(26, 82, 156, 0.5)); }
+            100% { transform: translateY(0px) rotate(0deg); filter: drop-shadow(0 10px 20px rgba(225, 36, 36, 0.3)); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 36, 36, 0.7); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(225, 36, 36, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 36, 36, 0); }
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(5, 11, 20, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(26, 82, 156, 0.3);
+            z-index: 1000;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .nav-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo-img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #fff;
+        }
+
+        .logo-text span {
+            color: #e12424;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 35px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #e12424;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #e12424;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Home / Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            padding: 140px 8% 60px 8%;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 75% 30%, #0f2340 0%, #050b14 65%);
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            max-width: 550px;
+            animation: fadeInLeft 1.2s ease forwards;
+        }
+
+        .branch-badge {
+            display: inline-block;
+            background: rgba(26, 82, 156, 0.2);
+            border: 1px solid #1a529c;
+            color: #cbd5e1;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h1 {
+            font-size: 50px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-text h1 span {
+            color: #e12424;
+            display: block;
+        }
+
+        .hero-text p {
+            color: #94a3b8;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #e12424;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #b91c1c;
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        .hero-theme-logo {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            border-radius: 50%;
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #03070d;
+            padding: 30px 8%;
+            text-align: center;
+            border-top: 1px solid rgba(26, 82, 156, 0.2);
+            color: #475569;
+            font-size: 14px;
+        }
+
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                padding-top: 140px;
+            }
+            .hero-text {
+                margin-bottom: 50px;
+            }
+            .hero-theme-logo {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-logo-container">
+            <img src="logo.png" alt="Flying Eagle Emblem" class="nav-logo-img">
+            <div class="logo-text">Flying<span>Eagle</span></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="additions.html">Recent Additions</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <span class="branch-badge">Kids Cycles & Walkers Branch</span>
+            <h1>Big Adventures For <span>Little Riders</span></h1>
+            <p>From their very first steps to independent pedaling down the block, our premium walkers and kids' cycles blend absolute safety with exciting designs your child will love.</p>
+            <a href="additions.html" class="btn">View New Arrivals</a>
+        </div>
+        <div class="hero-image-container">
+            <img src="logo.png" alt="Flying Eagle Logo" class="hero-theme-logo">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Flying Eagle Industries. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

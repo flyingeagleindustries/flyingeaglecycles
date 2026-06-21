@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our Kids Branch | Flying Eagle</title>
+    <style>
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a111c;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(5, 11, 20, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(26, 82, 156, 0.3);
+            z-index: 1000;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .nav-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo-img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #fff;
+        }
+
+        .logo-text span {
+            color: #e12424;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 35px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #e12424;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #e12424;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- About Section Content --- */
+        .about-section {
+            min-height: 100vh;
+            padding: 160px 8% 60px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .section-title span {
+            color: #e12424;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .about-info {
+            animation: fadeInLeft 1.2s ease forwards;
+        }
+
+        .about-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+            border-left: 4px solid #1a529c;
+            padding-left: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .about-info p {
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .contact-card {
+            background: #07111e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border: 1px solid rgba(26, 82, 156, 0.2);
+            border-left: 5px solid #e12424;
+            animation: fadeInRight 1.2s ease forwards;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 82, 156, 0.15);
+        }
+
+        .contact-card h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(26, 82, 156, 0.2);
+            border: 1px solid rgba(26, 82, 156, 0.4);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        .contact-details p {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .contact-details a, .contact-details span {
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: #e12424;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #03070d;
+            padding: 30px 8%;
+            text-align: center;
+            border-top: 1px solid rgba(26, 82, 156, 0.2);
+            color: #475569;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        @media (max-width: 968px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-logo-container">
+            <img src="logo.png" alt="Flying Eagle Emblem" class="nav-logo-img">
+            <div class="logo-text">Flying<span>Eagle</span></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="additions.html">Recent Additions</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- About & Contact Section -->
+    <section class="about-section">
+        <h2 class="section-title">About <span>Our Branch</span></h2>
+        
+        <div class="about-container">
+            <div class="about-info">
+                <h3>Built for Safety & Joy</h3>
+                <p>This branch of Flying Eagle Industries is completely dedicated to our youngest generation. We design high-quality, durable, and brightly colored baby walkers and children's cycles that support healthy growth and development.</p>
+                <p>Every piece of equipment from this branch features enhanced structural support, anti-tip stability engineering, and eco-friendly child-safe materials, providing parents with total peace of mind.</p>
+            </div>
+
+            <div class="contact-card">
+                <h3>Branch Contact Details</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <p>Call / WhatsApp</p>
+                        <span>0321 4309697</span>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <p>Email Address</p>
+                        <a href="mailto:flyingeagleindustries5@gmail.com">flyingeagleindustries5@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-details">
+                        <p>Facebook</p>
+                        <a href="https://www.facebook.com/flyingeaglecycles" target="_blank">facebook.com/flyingeaglecycles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Flying Eagle Industries. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
